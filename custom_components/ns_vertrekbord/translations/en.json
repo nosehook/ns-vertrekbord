@@ -1,0 +1,86 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "NS departure board",
+        "description": "Search the station you want departures for. API key: {key}.",
+        "data": {
+          "api_key": "NS API key",
+          "search": "Station"
+        },
+        "data_description": {
+          "api_key": "Your key from apiportal.ns.nl (product 'Ns-App')."
+        }
+      },
+      "station": {
+        "title": "Choose the station",
+        "data": {
+          "station": "Station"
+        }
+      },
+      "filter": {
+        "title": "Departure board {station}",
+        "description": "Optional: limit the board to a direction and train types.",
+        "data": {
+          "via": "Only trains via or to",
+          "categories": "Train types (empty = all)",
+          "count": "Departures in the attributes"
+        },
+        "data_description": {
+          "via": "Stations the train must call at or go to, e.g. Utrecht Centraal. Empty = all trains. You can also type a station name.",
+          "categories": "E.g. only Sprinters."
+        }
+      }
+    },
+    "error": {
+      "no_key": "Enter an NS API key.",
+      "invalid_auth": "The NS API key was rejected.",
+      "cannot_connect": "Cannot reach the NS API.",
+      "no_station": "No station found."
+    },
+    "abort": {
+      "already_configured": "This departure board already exists."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Departure board {station}",
+        "description": "Change direction and train types.",
+        "data": {
+          "via": "Only trains via or to",
+          "categories": "Train types (empty = all)",
+          "count": "Departures in the attributes"
+        },
+        "data_description": {
+          "via": "Stations the train must call at or go to, e.g. Utrecht Centraal. Empty = all trains. You can also type a station name.",
+          "categories": "E.g. only Sprinters."
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "departure_in": {
+        "name": "Departs in"
+      },
+      "departure_time": {
+        "name": "Departure time"
+      },
+      "destination": {
+        "name": "Destination"
+      },
+      "track": {
+        "name": "Track"
+      }
+    },
+    "binary_sensor": {
+      "delayed": {
+        "name": "Delayed"
+      },
+      "cancelled": {
+        "name": "Cancelled"
+      }
+    }
+  }
+}
