@@ -1,0 +1,86 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "NS vertrekbord",
+        "description": "Zoek het station waarvan je de vertrektijden wilt zien. API-sleutel: {key}.",
+        "data": {
+          "api_key": "NS API-sleutel",
+          "search": "Station"
+        },
+        "data_description": {
+          "api_key": "Je sleutel van apiportal.ns.nl (product 'Ns-App')."
+        }
+      },
+      "station": {
+        "title": "Kies het station",
+        "data": {
+          "station": "Station"
+        }
+      },
+      "filter": {
+        "title": "Vertrekbord {station}",
+        "description": "Optioneel: beperk het bord tot een richting en treinsoorten.",
+        "data": {
+          "via": "Alleen treinen via of naar",
+          "categories": "Treinsoorten (leeg = alle)",
+          "count": "Aantal vertrekken in de attributen"
+        },
+        "data_description": {
+          "via": "Kies stations waar de trein langs moet of naartoe gaat, bijv. Utrecht Centraal. Leeg = alle treinen. Je kunt ook een stationsnaam typen.",
+          "categories": "Bijv. alleen Sprinters."
+        }
+      }
+    },
+    "error": {
+      "no_key": "Vul een NS API-sleutel in.",
+      "invalid_auth": "De NS API-sleutel wordt geweigerd.",
+      "cannot_connect": "Kan de NS API niet bereiken.",
+      "no_station": "Geen station gevonden."
+    },
+    "abort": {
+      "already_configured": "Dit vertrekbord bestaat al."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Vertrekbord {station}",
+        "description": "Wijzig richting en treinsoorten.",
+        "data": {
+          "via": "Alleen treinen via of naar",
+          "categories": "Treinsoorten (leeg = alle)",
+          "count": "Aantal vertrekken in de attributen"
+        },
+        "data_description": {
+          "via": "Kies stations waar de trein langs moet of naartoe gaat, bijv. Utrecht Centraal. Leeg = alle treinen. Je kunt ook een stationsnaam typen.",
+          "categories": "Bijv. alleen Sprinters."
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "departure_in": {
+        "name": "Vertrek over"
+      },
+      "departure_time": {
+        "name": "Vertrektijd"
+      },
+      "destination": {
+        "name": "Eindbestemming"
+      },
+      "track": {
+        "name": "Spoor"
+      }
+    },
+    "binary_sensor": {
+      "delayed": {
+        "name": "Vertraagd"
+      },
+      "cancelled": {
+        "name": "Rijdt niet"
+      }
+    }
+  }
+}
