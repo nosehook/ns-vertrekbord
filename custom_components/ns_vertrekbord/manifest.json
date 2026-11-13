@@ -1,0 +1,13 @@
+{
+  "domain": "ns_vertrekbord",
+  "name": "NS vertrekbord",
+  "codeowners": ["@nosehook"],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://github.com/nosehook/ns-vertrekbord",
+  "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/nosehook/ns-vertrekbord/issues",
+  "requirements": [],
+  "version": "1.0.0"
+}
