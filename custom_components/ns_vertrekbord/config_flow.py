@@ -37,12 +37,8 @@ CATEGORY_LABELS = {"SPR": "Sprinter", "IC": "Intercity", "ICD": "Intercity direc
                    "EST": "Eurostar", "NSI": "NS International", "ST": "Stoptrein", "SNT": "Sneltrein"}
 
 
-def _existing_ns_key(hass) -> str | None:
-    """Reuse the API key of the built-in Nederlandse Spoorwegen integration if present."""
-    for entry in hass.config_entries.async_entries("nederlandse_spoorwegen"):
-        key = entry.data.get("api_key")
-        if key:
-            return key
+def _own_key(hass) -> str | None:
+    """API key of an earlier NS vertrekbord entry, offered as the default."""
     for entry in hass.config_entries.async_entries(DOMAIN):
         key = entry.data.get(CONF_API_KEY)
         if key:
@@ -129,9 +125,8 @@ class NSVertrekbordConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
     async def async_step_user(self, user_input=None):
         errors = {}
-        existing = _existing_ns_key(self.hass)
         if user_input is not None:
-            self._key = (user_input.get(CONF_API_KEY) or existing or "").strip()
+            self._key = (user_input.get(CONF_API_KEY) or "").strip()
             if not self._key:
                 errors[CONF_API_KEY] = "no_key"
             else:
@@ -146,11 +141,13 @@ class NSVertrekbordConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     if self._stations:
                         return await self.async_step_station()
                     errors["search"] = "no_station"
-        schema = {vol.Required("search"): str}
-        if not existing:
-            schema = {vol.Required(CONF_API_KEY): TextSelector(TextSelectorConfig(type=TextSelectorType.PASSWORD)), **schema}
-        return self.async_show_form(step_id="user", data_schema=vol.Schema(schema), errors=errors,
-                                    description_placeholders={"key": "bestaande NS-integratie" if existing else "—"})
+        suggested = (user_input or {}).get(CONF_API_KEY) or _own_key(self.hass)
+        key_field = vol.Required(CONF_API_KEY, description={"suggested_value": suggested} if suggested else None)
+        schema = vol.Schema({
+            key_field: TextSelector(TextSelectorConfig(type=TextSelectorType.PASSWORD)),
+            vol.Required("search"): str,
+        })
+        return self.async_show_form(step_id="user", data_schema=schema, errors=errors)
 
     async def async_step_station(self, user_input=None):
         if user_input is not None:
