@@ -3,13 +3,13 @@
     "step": {
       "user": {
         "title": "NS vertrekbord",
-        "description": "Zoek het station waarvan je de vertrektijden wilt zien. API-sleutel: {key}.",
+        "description": "Zoek het station waarvan je de vertrektijden wilt zien.",
         "data": {
           "api_key": "NS API-sleutel",
           "search": "Station"
         },
         "data_description": {
-          "api_key": "Je sleutel van apiportal.ns.nl (product 'Ns-App')."
+          "api_key": "Je sleutel van apiportal.ns.nl (product 'Ns-App'). Vooraf ingevuld met de sleutel van je andere borden, als je die hebt."
         }
       },
       "station": {

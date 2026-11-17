@@ -3,13 +3,13 @@
     "step": {
       "user": {
         "title": "NS departure board",
-        "description": "Search the station you want departures for. API key: {key}.",
+        "description": "Search the station you want departures for.",
         "data": {
           "api_key": "NS API key",
           "search": "Station"
         },
         "data_description": {
-          "api_key": "Your key from apiportal.ns.nl (product 'Ns-App')."
+          "api_key": "Your key from apiportal.ns.nl (product 'Ns-App'). Pre-filled with the key of your other boards, if any."
         }
       },
       "station": {
