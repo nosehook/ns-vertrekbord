@@ -16,13 +16,13 @@ Includes the **NS Vertrekbord Card**, a dashboard card that shows a board like t
   - **Vertraagd** — next train is delayed
   - **Rijdt niet** — the first train on the board is cancelled
 - The *Vertrek over* sensor carries the whole board as attributes: train type, destination, via stations (full names), planned/expected time, delay in minutes, planned/actual track, cancellation, NS messages and the next departures.
-- Reuses the API key of the built-in *Nederlandse Spoorwegen* integration when present.
+- When you add another board, the API key of your existing boards is pre-filled.
 - One API call per board per minute. Change direction and train types later via **Configure**.
 - Dutch and English.
 
 ## Requirements
 
-An NS API key (free) from [apiportal.ns.nl](https://apiportal.ns.nl/), product **Ns-App** (Reisinformatie API). If you already use the built-in *Nederlandse Spoorwegen* integration, its key is reused automatically.
+An NS API key (free) from [apiportal.ns.nl](https://apiportal.ns.nl/), product **Ns-App** (Reisinformatie API).
 
 ## Installation
 
