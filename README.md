@@ -2,7 +2,7 @@
 
 A Home Assistant integration that shows the **departure board of a Dutch railway station** (NS), like the yellow/white boards on the platform: minutes until departure, train type, final destination, via stations, track (and track changes), delays, cancellations and NS messages, plus the next trains.
 
-Pair it with the [NS Vertrekbord Card](https://github.com/nosehook/ns-vertrekbord-card) to show it as a station board on your dashboard.
+Includes the **NS Vertrekbord Card**, a dashboard card that shows a board like the real thing. It is registered automatically, no separate install needed.
 
 ## Features
 
@@ -41,6 +41,30 @@ Copy `custom_components/ns_vertrekbord` to `/config/custom_components/` and rest
 <!-- ha-marketplace:exclude-end -->
 
 Then add a board under **Settings → Devices & services → Add integration → NS vertrekbord**.
+
+## Dashboard card
+
+The integration serves the card and adds it to your dashboard resources when it starts (in YAML resource mode it is loaded as an extra frontend module instead). After installing or updating, reload your browser, then add the card:
+
+```yaml
+type: custom:ns-vertrekbord-card
+entity: sensor.utrecht_leidsche_rijn_utrecht_centraal_vertrek_over
+```
+
+| Option | Default | Description |
+|---|---|---|
+| `entity` | – | The *Vertrek over* sensor of an NS vertrekbord |
+| `compact` | `false` | Smaller layout without the via line |
+| `show_via` | `true` | Show the via stations |
+| `show_messages` | `true` | Show NS messages (yellow bar) |
+| `show_track` | `true` | Show the track |
+| `next_count` | `1` (`2` compact) | Next trains in the bottom bar (`0` hides it) |
+| `type_style` | `auto` | `long` (Sprinter), `short` (SPR) or `auto` |
+| `language` | `nl` | `nl` or `en` |
+
+The card also has a visual editor.
+
+**Coming from the separate card?** If you installed the [NS Vertrekbord Card](https://github.com/nosehook/ns-vertrekbord-card) on its own before, remove it (and its dashboard resource) so only the bundled version is loaded. Your card configuration stays the same.
 
 ## Data
 
